@@ -2,6 +2,8 @@ const path = require("path");
 // const myLoader = require('./myLoader');
 const webpack = require("webpack");
 const childProcess = require("child_process");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -33,7 +35,7 @@ module.exports = {
         type: "asset",
         parser: {
           dataUrlCondition: {
-            maxSize: 200 * 1024,
+            maxSize: 10 * 1024,
           },
         },
       },
@@ -51,9 +53,16 @@ module.exports = {
                 Commit Date : ${new Date().toLocaleString()}
             `,
     }),
+
     new webpack.DefinePlugin({
       dev: JSON.stringify(process.env.DEV_API),
       pro: JSON.stringify(process.env.PRO_API),
     }),
+
+    new HtmlWebpackPlugin({
+      template: "./src/index.html", // 목표 html 파일의 위치입니다.
+    }),
+
+    new CleanWebpackPlugin(),
   ],
 };

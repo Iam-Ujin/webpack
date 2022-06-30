@@ -1,4 +1,4 @@
-import { plus } from "./plus.js";
+// import { plus } from "./plus.js";
 import "./styles.css";
 import tiger from "./tiger.png";
 
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.innerHTML = `<img src = "${tiger}">`;
 });
 
-console.log(pw);
+// console.log(pw);
 
 let env;
 
